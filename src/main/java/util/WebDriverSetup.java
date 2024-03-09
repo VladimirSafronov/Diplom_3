@@ -1,5 +1,6 @@
 package util;
 
+import exceptions.UnknownBrowserNameException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -12,12 +13,12 @@ public class WebDriverSetup {
         System.setProperty("webdriver.chrome.driver", System.getenv("CHROME_DRIVER"));
         return new ChromeDriver();
       case "yandex":
-        System.setProperty("webdriver.chrome.driver", System.getenv("CHROME_DRIVER"));
+        System.setProperty("webdriver.chrome.driver", System.getenv("YANDEX_DRIVER"));
         ChromeOptions options = new ChromeOptions();
         options.setBinary("/Applications/Yandex.app/Contents/MacOS/Yandex");
         return new ChromeDriver(options);
       default:
-        throw new RuntimeException("Unknown name browser");
+        throw new UnknownBrowserNameException(browserName + " is unknown browser name.");
     }
   }
 }
