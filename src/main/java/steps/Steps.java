@@ -39,8 +39,8 @@ public class Steps {
     driver.get(url);
   }
 
-  @Step("Кликаем по кнопке {button}")
-  public void clickButton(String button) {
+  @Step("Кликаем по элементу {button} главной страницы")
+  public void clickElementMainPage(String button) {
     StellarBurgersMain page = new StellarBurgersMain(driver);
     switch (button) {
       case "Личный кабинет":
@@ -49,10 +49,19 @@ public class Steps {
       case "Войти в аккаунт":
         page.getEnterAccountButton().click();
         break;
+      case "Булки":
+        page.getBunsLink().click();
+        break;
+      case "Соусы":
+        page.getSousesLink().click();
+        break;
+      case "Начинки":
+        page.getFillingsLink().click();
+        break;
     }
   }
 
-  @Step("Кликаем по ссылке {linkName} окна регистрации")
+  @Step("Кликаем по элементу {linkName} окна регистрации")
   public void clickLinkRegistrationPage(String linkName) {
     RegistrationPage page = new RegistrationPage(driver);
     switch (linkName) {
@@ -62,7 +71,7 @@ public class Steps {
     }
   }
 
-  @Step("Кликаем по ссылке {linkName} окна восстановления пароля")
+  @Step("Кликаем по элементу {linkName} окна восстановления пароля")
   public void clickLinkPasswordRecoveryPage(String linkName) {
     PasswordRecoveryPage page = new PasswordRecoveryPage(driver);
     switch (linkName) {
@@ -72,7 +81,7 @@ public class Steps {
     }
   }
 
-  @Step("Кликаем по ссылке {linkName} окна входа в личный кабинет")
+  @Step("Кликаем по элементу {linkName} окна входа в личный кабинет")
   public void clickLinkLoginPage(String linkName) {
     PersonalAccountLoginPage page = new PersonalAccountLoginPage(driver);
     switch (linkName) {
@@ -85,7 +94,7 @@ public class Steps {
     }
   }
 
-  @Step("Кликаем по ссылке {linkName} на странице личного кабинета")
+  @Step("Кликаем по элементу {linkName} на странице личного кабинета")
   public void clickLinkPersonalAccountPage(String linkName) {
     PersonalAccountPage page = new PersonalAccountPage(driver);
     switch (linkName) {
@@ -143,6 +152,12 @@ public class Steps {
   public boolean isLoginHeaderExists() {
     PersonalAccountLoginPage page = new PersonalAccountLoginPage(driver);
     return page.getHeader() != null;
+  }
+
+  @Step("Проверяем подсвечен ли элемент {elementName}")
+  public boolean isElementLight(String elementName) {
+    StellarBurgersMain page = new StellarBurgersMain(driver);
+    return page.getElementLinkLight(elementName);
   }
 
   /**

@@ -5,6 +5,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
+/**
+ * Класс устанавливает браузер для тестирования (Паттерн Фабрика)
+ */
 public class WebDriverSetup {
 
   public static WebDriver getWebDriver(String browserName) {

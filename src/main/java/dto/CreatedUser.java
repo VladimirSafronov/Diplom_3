@@ -1,5 +1,8 @@
 package dto;
 
+/**
+ * Класс dto api response
+ */
 public class CreatedUser {
 
   private boolean success;

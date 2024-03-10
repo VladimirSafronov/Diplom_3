@@ -29,4 +29,7 @@ public class Constants {
   public static final String LOGIN_LINK = "Войти";
   public static final String CONSTRUCTOR_LINK = "Конструктор";
   public static final String LOGO_LINK = "Логотип";
+  public static final String BUNS_LINK = "Булки";
+  public static final String SOUSES_LINK = "Соусы";
+  public static final String FILLINGS_LINK = "Начинки";
 }

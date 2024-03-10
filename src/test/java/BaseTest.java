@@ -5,6 +5,7 @@ import org.openqa.selenium.html5.LocalStorage;
 import org.openqa.selenium.html5.WebStorage;
 import org.openqa.selenium.remote.Augmenter;
 import steps.Steps;
+import util.Constants;
 import util.WebDriverSetup;
 
 public class BaseTest {
@@ -30,6 +31,7 @@ public class BaseTest {
     driver = WebDriverSetup.getWebDriver("chrome");
     driver.manage().window().maximize();
     steps = new Steps();
+    steps.openSite(Constants.URL, driver);
   }
 
   @After

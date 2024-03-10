@@ -1,5 +1,8 @@
 package dto;
 
+/**
+ * Класс dto пользователя
+ */
 public class User {
 
   private String email;

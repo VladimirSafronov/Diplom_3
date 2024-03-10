@@ -13,16 +13,17 @@ public class Waiter {
     return driver.findElements(locator).size() > 0 && driver.findElement(locator).isDisplayed();
   }
 
-  public static void waitForElement(WebDriver driver, By locator) {
+  public static boolean waitForElement(WebDriver driver, By locator) {
     try {
       for (int i = 0; i < 10; i++) {
         if (isElementExists(driver, locator)) {
-          return;
+          return true;
         }
         Thread.sleep(500);
       }
     } catch (Exception ex) {
       throw new NotFoundElementException("Element by locator " + locator + " didn't find");
     }
+    return false;
   }
 }

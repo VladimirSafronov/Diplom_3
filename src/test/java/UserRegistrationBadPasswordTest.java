@@ -1,7 +1,6 @@
 import static util.Constants.PERSONAL_ACCOUNT_BUTTON;
 import static util.Constants.TEST_USER_EMAIL;
 import static util.Constants.TEST_USER_NAME;
-import static util.Constants.URL;
 
 import io.qameta.allure.Description;
 import io.qameta.allure.junit4.DisplayName;
@@ -31,8 +30,7 @@ public class UserRegistrationBadPasswordTest extends BaseTest {
   @DisplayName("Check incorrect password length")
   @Description("Проверка ошибки для некорректного пароля")
   public void registrationTooShortPasswordThenFail() {
-    steps.openSite(URL, driver);
-    steps.clickButton(PERSONAL_ACCOUNT_BUTTON);
+    steps.clickElementMainPage(PERSONAL_ACCOUNT_BUTTON);
     WebElement incorrectPasswordMessage = steps.inputIncorrectRegistrationData(
         TEST_USER_NAME, TEST_USER_EMAIL, password);
     Assert.assertNotNull(incorrectPasswordMessage);
