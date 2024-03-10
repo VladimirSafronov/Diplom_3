@@ -16,6 +16,7 @@
     <junit.version>4.13.2</junit.version>
     <selenium-java.version>4.18.1</selenium-java.version>
     <allure-junit4.version>2.25.0</allure-junit4.version>
+    <jackson-databind.version>2.16.1</jackson-databind.version>
   </properties>
 
   <dependencies>
@@ -44,16 +45,14 @@
     <dependency>
       <groupId>io.rest-assured</groupId>
       <artifactId>rest-assured</artifactId>
-      <version>${rest-assured.version}</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>io.rest-assured</groupId>
-      <artifactId>rest-assured</artifactId>
       <version>5.4.0</version>
       <scope>compile</scope>
     </dependency>
-
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+      <version>${jackson-databind.version}</version>
+    </dependency>
   </dependencies>
 
   <build>

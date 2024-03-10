@@ -1,3 +1,8 @@
+import static util.Constants.PERSONAL_ACCOUNT_BUTTON;
+import static util.Constants.TEST_USER_EMAIL;
+import static util.Constants.TEST_USER_NAME;
+import static util.Constants.URL;
+
 import io.qameta.allure.Description;
 import io.qameta.allure.junit4.DisplayName;
 import org.junit.Assert;
@@ -7,7 +12,6 @@ import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameter;
 import org.junit.runners.Parameterized.Parameters;
 import org.openqa.selenium.WebElement;
-import util.Constants;
 
 @RunWith(Parameterized.class)
 public class UserRegistrationBadPasswordTest extends BaseTest {
@@ -27,10 +31,10 @@ public class UserRegistrationBadPasswordTest extends BaseTest {
   @DisplayName("Check incorrect password length")
   @Description("Проверка ошибки для некорректного пароля")
   public void registrationTooShortPasswordThenFail() {
-    steps.openSite(Constants.URL, driver);
-    steps.movePersonalAccount();
+    steps.openSite(URL, driver);
+    steps.clickButton(PERSONAL_ACCOUNT_BUTTON);
     WebElement incorrectPasswordMessage = steps.inputIncorrectRegistrationData(
-        Constants.TEST_USER_NAME, Constants.TEST_USER_EMAIL, password);
+        TEST_USER_NAME, TEST_USER_EMAIL, password);
     Assert.assertNotNull(incorrectPasswordMessage);
   }
 }

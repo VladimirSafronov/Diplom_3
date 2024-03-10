@@ -10,7 +10,20 @@ public class Constants {
   /**
    * Данные для тестового пользователя
    */
-  public static final String TEST_USER_EMAIL = "testuser9992@yandex.ru";
-  public static final String TEST_USER_PASSWORD = "pass92";
-  public static final String TEST_USER_NAME = "testUser9992";
+  public static final String TEST_USER_EMAIL = "testuser9989@yandex.ru";
+  public static final String TEST_USER_PASSWORD = "pass89";
+  public static final String TEST_USER_NAME = "testUser9989";
+
+  /**
+   * Названия кнопок
+   */
+  public static final String PERSONAL_ACCOUNT_BUTTON = "Личный кабинет";
+  public static final String ENTER_ACCOUNT_BUTTON = "Войти в аккаунт";
+
+  /**
+   * Названия ссылок
+   */
+  public static final String REGISTRATION_LINK = "Зарегистрироваться";
+  public static final String RECOVERY_PASSWORD_LINK = "Восстановить пароль";
+  public static final String LOGIN_LINK = "Войти";
 }

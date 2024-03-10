@@ -6,6 +6,7 @@ import static util.Constants.URL;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.filter.log.RequestLoggingFilter;
 import io.restassured.filter.log.ResponseLoggingFilter;
+import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 
 public class Specification {
@@ -28,6 +29,15 @@ public class Specification {
         .header("Authorization", accessToken)
         .when()
         .delete(path)
+        .thenReturn();
+  }
+
+  public static Response doPostRequest(String path, Object body) {
+    return given()
+        .spec(requestSpec())
+        .body(body)
+        .when()
+        .post(path)
         .thenReturn();
   }
 }

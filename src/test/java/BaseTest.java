@@ -1,4 +1,3 @@
-import java.util.concurrent.TimeUnit;
 import org.junit.After;
 import org.junit.Before;
 import org.openqa.selenium.WebDriver;
@@ -12,6 +11,19 @@ public class BaseTest {
 
   protected WebDriver driver;
   protected Steps steps;
+
+  /**
+   * Метод находит accessToken созданного пользователя, и в случае нахождения, вызывает его удаление
+   * через api
+   */
+  protected void deleteTestData() {
+    WebStorage webStorage = (WebStorage) new Augmenter().augment(driver);
+    LocalStorage localStorage = webStorage.getLocalStorage();
+    String accessToken = localStorage.getItem("accessToken");
+    if (accessToken != null) {
+      steps.deleteUserStep(accessToken);
+    }
+  }
 
   @Before
   public void before() {

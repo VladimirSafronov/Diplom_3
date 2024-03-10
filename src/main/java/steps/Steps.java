@@ -1,17 +1,19 @@
 package steps;
 
 import static util.Specification.doDeleteRequest;
+import static util.Specification.doPostRequest;
 
+import io.restassured.response.Response;
 import java.time.Duration;
 import org.openqa.selenium.WebDriver;
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import pages.PasswordRecoveryPage;
 import pages.PersonalAccountLoginPage;
 import pages.RegistrationPage;
 import pages.StellarBurgersMain;
-import util.Constants;
 
 /**
  * Помогает реализовать тестирование при помощи степов - тесты короче, отчет понятнее.
@@ -23,6 +25,11 @@ public class Steps {
    */
   final String deleteUserDataUrl = "api/auth/user";
 
+  /**
+   * Адрес ручки создания пользователя
+   */
+  final String createUserUrl = "api/auth/register";
+
   private static WebDriver driver;
 
   @Step("Переходим на сайт: {url}")
@@ -31,10 +38,50 @@ public class Steps {
     driver.get(url);
   }
 
-  @Step("Кликаем по кнопке Личный кабинет")
-  public void movePersonalAccount() {
+  @Step("Кликаем по кнопке {button}")
+  public void clickButton(String button) {
     StellarBurgersMain page = new StellarBurgersMain(driver);
-    page.getPersonalAccountButton().click();
+    switch (button) {
+      case "Личный кабинет":
+        page.getPersonalAccountButton().click();
+        break;
+      case "Войти в аккаунт":
+        page.getEnterAccountButton().click();
+        break;
+    }
+  }
+
+  @Step("Кликаем по ссылке {linkName} окна регистрации")
+  public void clickLinkRegistrationPage(String linkName) {
+    RegistrationPage page = new RegistrationPage(driver);
+    switch (linkName) {
+      case "Войти":
+        page.getLoginLink().click();
+        break;
+    }
+  }
+
+  @Step("Кликаем по ссылке {linkName} окна восстановления пароля")
+  public void clickLinkPasswordRecoveryPage(String linkName) {
+    PasswordRecoveryPage page = new PasswordRecoveryPage(driver);
+    switch (linkName) {
+      case "Войти":
+        page.getLoginLink().click();
+        break;
+    }
+  }
+
+  @Step("Кликаем по ссылке {linkName} окна входа в личный кабинет")
+  public void clickLinkLoginPage(String linkName) {
+    PersonalAccountLoginPage page = new PersonalAccountLoginPage(driver);
+    switch (linkName) {
+      case "Зарегистрироваться":
+        page.getRegistrationLink().click();
+        break;
+      case "Восстановить пароль":
+        page.getPasswordRecoveryLink().click();
+        break;
+    }
   }
 
   @Step("Вводим корректные данные регистрации")
@@ -52,11 +99,16 @@ public class Steps {
   }
 
   @Step("Входим в личный кабинет")
-  public void loginPersonalAccount() {
+  public void loginPersonalAccount(String email, String password) {
     PersonalAccountLoginPage page = new PersonalAccountLoginPage(driver);
-    inputFieldData(page.getEmailField(), Constants.TEST_USER_EMAIL);
-    inputFieldData(page.getPasswordField(), Constants.TEST_USER_PASSWORD);
+    inputFieldData(page.getEmailField(), email);
+    inputFieldData(page.getPasswordField(), password);
     page.getEnterButton().click();
+  }
+
+  @Step("Создание пользователя")
+  public Response createUserStep(Object body) {
+    return doPostRequest(createUserUrl, body);
   }
 
   @Step("Удаление пользователя")

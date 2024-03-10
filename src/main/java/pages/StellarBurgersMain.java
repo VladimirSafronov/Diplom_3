@@ -13,7 +13,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class StellarBurgersMain {
 
   private final By personalAccountButtonLocator = By.xpath(".//p[text()='Личный Кабинет']");
-
+  private final By enterAccountButtonLocator = By.xpath(".//button[text()='Войти в аккаунт']");
 
   private final By makeOrderButtonLocator = By.xpath(".//button[text()='Оформить заказ']");
 
@@ -21,7 +21,6 @@ public class StellarBurgersMain {
   private final WebDriverWait wait;
 
   private final WebElement personalAccountButton;
-  private WebElement makeOrderButton;
 
   public StellarBurgersMain(WebDriver driver) {
     this.driver = driver;
@@ -37,5 +36,10 @@ public class StellarBurgersMain {
   public WebElement getMakeOrderButton() {
     wait.until(ExpectedConditions.elementToBeClickable(makeOrderButtonLocator));
     return driver.findElement(makeOrderButtonLocator);
+  }
+
+  public WebElement getEnterAccountButton() {
+    wait.until(ExpectedConditions.elementToBeClickable(enterAccountButtonLocator));
+    return driver.findElement(enterAccountButtonLocator);
   }
 }
