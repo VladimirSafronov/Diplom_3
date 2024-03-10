@@ -1,28 +1,23 @@
 import java.util.concurrent.TimeUnit;
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Test;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.html5.LocalStorage;
+import org.openqa.selenium.html5.WebStorage;
+import org.openqa.selenium.remote.Augmenter;
+import steps.Steps;
 import util.WebDriverSetup;
 
 public class BaseTest {
 
   protected WebDriver driver;
+  protected Steps steps;
 
   @Before
   public void before() {
-
     driver = WebDriverSetup.getWebDriver("chrome");
-
     driver.manage().window().maximize();
-    driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-    driver.manage().timeouts().pageLoadTimeout(20, TimeUnit.SECONDS);
-    driver.manage().timeouts().setScriptTimeout(20, TimeUnit.SECONDS);
-  }
-
-  @Test
-  public void test() {
-    driver.navigate().to("https://stellarburgers.nomoreparties.site/");
+    steps = new Steps();
   }
 
   @After
