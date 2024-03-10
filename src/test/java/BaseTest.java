@@ -28,7 +28,7 @@ public class BaseTest {
 
   @Before
   public void before() {
-    driver = WebDriverSetup.getWebDriver("chrome");
+    driver = WebDriverSetup.getWebDriver("yandex");
     driver.manage().window().maximize();
     steps = new Steps();
     steps.openSite(Constants.URL, driver);
