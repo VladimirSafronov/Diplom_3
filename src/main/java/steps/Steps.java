@@ -12,6 +12,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.PasswordRecoveryPage;
 import pages.PersonalAccountLoginPage;
+import pages.PersonalAccountPage;
 import pages.RegistrationPage;
 import pages.StellarBurgersMain;
 
@@ -84,6 +85,22 @@ public class Steps {
     }
   }
 
+  @Step("Кликаем по ссылке {linkName} на странице личного кабинета")
+  public void clickLinkPersonalAccountPage(String linkName) {
+    PersonalAccountPage page = new PersonalAccountPage(driver);
+    switch (linkName) {
+      case "Конструктор":
+        page.getConstructorLink().click();
+        break;
+      case "Логотип":
+        page.getLogoLink().click();
+        break;
+      case "Выход":
+        page.getLogoutButton().click();
+        break;
+    }
+  }
+
   @Step("Вводим корректные данные регистрации")
   public void inputCorrectRegistrationData(String name, String email, String password) {
     RegistrationPage registrationPage = inputRegistrationData(name, email, password);
@@ -120,6 +137,12 @@ public class Steps {
   public boolean isMakeOrderButtonExists() {
     StellarBurgersMain page = new StellarBurgersMain(driver);
     return page.getMakeOrderButton() != null;
+  }
+
+  @Step("Проверяем имеется ли заголовок Вход")
+  public boolean isLoginHeaderExists() {
+    PersonalAccountLoginPage page = new PersonalAccountLoginPage(driver);
+    return page.getHeader() != null;
   }
 
   /**

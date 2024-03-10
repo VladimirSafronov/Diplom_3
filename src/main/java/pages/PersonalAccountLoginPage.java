@@ -16,6 +16,7 @@ public class PersonalAccountLoginPage extends PasswordRecoveryPage {
   private final By enterButtonLocator = By.xpath(".//button[text()='Войти']");
   private final By badPasswordMessageLocator = By.xpath(".//p[text()='Некорректный пароль']");
   private final By passwordRecoveryLinkLocator = By.xpath(".//a[text()='Восстановить пароль']");
+  private final By headerLocator = By.xpath(".//h2[text()='Вход']");
 
   protected WebElement passwordField;
 
@@ -51,5 +52,10 @@ public class PersonalAccountLoginPage extends PasswordRecoveryPage {
   public WebElement getPasswordRecoveryLink() {
     wait.until(ExpectedConditions.elementToBeClickable(passwordRecoveryLinkLocator));
     return driver.findElement(passwordRecoveryLinkLocator);
+  }
+
+  public WebElement getHeader() {
+    wait.until(ExpectedConditions.visibilityOfElementLocated(headerLocator));
+    return driver.findElement(headerLocator);
   }
 }
