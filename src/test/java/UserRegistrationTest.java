@@ -15,7 +15,7 @@ public class UserRegistrationTest extends BaseTest {
   public void registrationValidDataThenSuccess() {
     steps.openSite(Constants.URL, driver);
     steps.movePersonalAccount();
-    steps.inputRegistrationData();
+    steps.inputCorrectRegistrationData(Constants.TEST_USER_NAME, Constants.TEST_USER_EMAIL, Constants.TEST_USER_PASSWORD);
     steps.loginPersonalAccount();
     Assert.assertTrue(steps.isMakeOrderButtonExists());
     deleteTestData();

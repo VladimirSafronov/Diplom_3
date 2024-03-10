@@ -37,19 +37,18 @@ public class Steps {
     page.getPersonalAccountButton().click();
   }
 
-  @Step("Вводим данные регистрации")
-  public void inputRegistrationData() {
-    PersonalAccountLoginPage personalAccountLoginPage = new PersonalAccountLoginPage(driver);
-    personalAccountLoginPage.getRegistrationLink().click();
+  @Step("Вводим корректные данные регистрации")
+  public void inputCorrectRegistrationData(String name, String email, String password) {
+    RegistrationPage registrationPage = inputRegistrationData(name, email, password);
 
-    RegistrationPage registrationPage = new RegistrationPage(driver);
-    inputFieldData(registrationPage.getNameField(), Constants.TEST_USER_NAME);
-    inputFieldData(registrationPage.getEmailField(), Constants.TEST_USER_EMAIL);
-    inputFieldData(registrationPage.getPasswordField(), Constants.TEST_USER_PASSWORD);
-
-    registrationPage.getRegistrationButton().click();
     new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.invisibilityOf(
         registrationPage.getEmailField()));
+  }
+
+  @Step("Вводим некорректные данные регистрации")
+  public WebElement inputIncorrectRegistrationData(String name, String email, String password) {
+    RegistrationPage registrationPage = inputRegistrationData(name, email, password);
+    return registrationPage.getBadPasswordMessage();
   }
 
   @Step("Входим в личный кабинет")
@@ -75,8 +74,24 @@ public class Steps {
    * Метод вводит текст в поле ввода
    */
   private void inputFieldData(WebElement element, String data) {
-      element.click();
-      element.clear();
-      element.sendKeys(data);
+    element.click();
+    element.clear();
+    element.sendKeys(data);
+  }
+
+  /**
+   * Метод вводит текст во все поля регистрационного окна
+   */
+  private RegistrationPage inputRegistrationData(String name, String email, String password) {
+    PersonalAccountLoginPage personalAccountLoginPage = new PersonalAccountLoginPage(driver);
+    personalAccountLoginPage.getRegistrationLink().click();
+
+    RegistrationPage registrationPage = new RegistrationPage(driver);
+    inputFieldData(registrationPage.getNameField(), name);
+    inputFieldData(registrationPage.getEmailField(), email);
+    inputFieldData(registrationPage.getPasswordField(), password);
+    registrationPage.getRegistrationButton().click();
+
+    return registrationPage;
   }
 }

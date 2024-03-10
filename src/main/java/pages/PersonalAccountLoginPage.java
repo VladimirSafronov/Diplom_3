@@ -19,6 +19,7 @@ public class PersonalAccountLoginPage {
       ".//label[contains(text(),'Пароль')]/following-sibling::input");
   private final By registrationLinkLocator = By.xpath(".//a[text()='Зарегистрироваться']");
   private final By enterButtonLocator = By.xpath(".//button[text()='Войти']");
+  private final By badPasswordMessageLocator = By.xpath(".//p[text()='Некорректный пароль']");
 
   protected WebElement emailField;
   protected WebElement passwordField;
@@ -57,5 +58,10 @@ public class PersonalAccountLoginPage {
 
   public WebElement getEnterButton() {
     return enterButton;
+  }
+
+  public WebElement getBadPasswordMessage() {
+    wait.until(ExpectedConditions.visibilityOfElementLocated(badPasswordMessageLocator));
+    return driver.findElement(badPasswordMessageLocator);
   }
 }
