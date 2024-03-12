@@ -1,18 +1,17 @@
 package util;
 
+import com.github.javafaker.Faker;
+
 public class Constants {
 
-  /**
-   * Url приложения Stellar Burgers
-   */
-  public static final String URL = "https://stellarburgers.nomoreparties.site/";
+  static Faker faker = new Faker();
 
   /**
    * Данные для тестового пользователя
    */
-  public static final String TEST_USER_EMAIL = "testuser9989@yandex.ru";
-  public static final String TEST_USER_PASSWORD = "pass89";
-  public static final String TEST_USER_NAME = "testUser9989";
+  public static final String TEST_USER_EMAIL = faker.internet().emailAddress();
+  public static final String TEST_USER_PASSWORD = faker.internet().password(6, 10);
+  public static final String TEST_USER_NAME = faker.name().firstName();
 
   /**
    * Названия кнопок

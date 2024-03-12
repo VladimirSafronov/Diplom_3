@@ -5,13 +5,14 @@ import org.openqa.selenium.html5.LocalStorage;
 import org.openqa.selenium.html5.WebStorage;
 import org.openqa.selenium.remote.Augmenter;
 import steps.Steps;
-import util.Constants;
+import util.PropertiesLoader;
 import util.WebDriverSetup;
 
 public class BaseTest {
 
   protected WebDriver driver;
   protected Steps steps;
+  public PropertiesLoader propertiesLoader;
 
   /**
    * Метод находит accessToken созданного пользователя, и в случае нахождения, вызывает его удаление
@@ -28,10 +29,13 @@ public class BaseTest {
 
   @Before
   public void before() {
-    driver = WebDriverSetup.getWebDriver("yandex");
+    propertiesLoader = new PropertiesLoader();
+    propertiesLoader.getProperties();
+    driver = WebDriverSetup.getWebDriver(propertiesLoader.getBrowserName(),
+        propertiesLoader.getYandexBrowserPath());
     driver.manage().window().maximize();
     steps = new Steps();
-    steps.openSite(Constants.URL, driver);
+    steps.openSite(propertiesLoader.getUrl(), driver);
   }
 
   @After

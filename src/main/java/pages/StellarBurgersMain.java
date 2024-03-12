@@ -6,7 +6,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import util.Waiter;
 
 /**
  * Page Object главной страницы Stellar Burgers
@@ -68,6 +67,7 @@ public class StellarBurgersMain {
     By elementLinkLightLocator = By.xpath(String.format(
         ".//span[text()='%s']/parent::div[contains(@class, 'tab_tab_type_current__2BEPc')]",
         linkName));
-    return Waiter.waitForElement(driver, elementLinkLightLocator);
+    wait.until(ExpectedConditions.visibilityOfElementLocated(elementLinkLightLocator));
+    return driver.findElement(elementLinkLightLocator).isDisplayed();
   }
 }

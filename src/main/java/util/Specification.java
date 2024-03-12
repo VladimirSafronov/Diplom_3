@@ -1,7 +1,6 @@
 package util;
 
 import static io.restassured.RestAssured.given;
-import static util.Constants.URL;
 
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.filter.log.RequestLoggingFilter;
@@ -15,8 +14,11 @@ public class Specification {
    * Создание базовых параметров запроса
    */
   private static RequestSpecification requestSpec() {
+    PropertiesLoader propertiesLoader = new PropertiesLoader();
+    propertiesLoader.getProperties();
+
     return new RequestSpecBuilder()
-        .setBaseUri(URL)
+        .setBaseUri(propertiesLoader.getUrl())
         .setContentType("application/json")
         .addFilter(new RequestLoggingFilter())
         .addFilter(new ResponseLoggingFilter())
