@@ -5,14 +5,22 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
 
+/**
+ * Класс-загрузчик параметров приложения из конфигурационного файла
+ */
 public class PropertiesLoader {
 
   private String url;
   private String browserName;
   private String yandexBrowserPath;
-  Properties properties = new Properties();
+  Properties properties;
 
-  public void getProperties() {
+  public PropertiesLoader() {
+    properties = new Properties();
+    getProperties();
+  }
+
+  private void getProperties() {
     try (
         FileInputStream fileInputStream = new FileInputStream("config.properties")) {
       properties.load(fileInputStream);

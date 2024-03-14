@@ -15,7 +15,6 @@ public class Specification {
    */
   private static RequestSpecification requestSpec() {
     PropertiesLoader propertiesLoader = new PropertiesLoader();
-    propertiesLoader.getProperties();
 
     return new RequestSpecBuilder()
         .setBaseUri(propertiesLoader.getUrl())

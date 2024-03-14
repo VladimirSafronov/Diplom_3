@@ -30,7 +30,6 @@ public class BaseTest {
   @Before
   public void before() {
     propertiesLoader = new PropertiesLoader();
-    propertiesLoader.getProperties();
     driver = WebDriverSetup.getWebDriver(propertiesLoader.getBrowserName(),
         propertiesLoader.getYandexBrowserPath());
     driver.manage().window().maximize();
